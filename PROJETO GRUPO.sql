@@ -1,47 +1,48 @@
-CREATE TABLE Aluno (
-    id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(255),
-    email VARCHAR(255),
-    telefone VARCHAR(255),
-    data_nascimento DATE,
-    curso_id INT,
-    modulo_atual_id INT,
-    data_inicio DATE,
-    data_conclusao DATE,
-    nota FLOAT,
-    FOREIGN KEY (curso_id) REFERENCES Curso(id),
-    FOREIGN KEY (modulo_atual_id) REFERENCES Modulo(id)
-);
-
-CREATE TABLE Facilitador (
-    id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(255),
-    email VARCHAR(255),
-    telefone VARCHAR(255),
-    departamento_id INT,
-    FOREIGN KEY (departamento_id) REFERENCES Departamento(id)
-);
-
 CREATE TABLE Departamento (
-    id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(255),
-    descricao VARCHAR(255)
-);
-
-CREATE TABLE Modulo (
-    id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(255),
-    descricao VARCHAR(255),
-    curso_id INT,
-    facilitador_id INT,
-    FOREIGN KEY (curso_id) REFERENCES Curso(id),
-    FOREIGN KEY (facilitador_id) REFERENCES Facilitador(id)
+    id_departamento INTEGER PRIMARY KEY,
+    nome TEXT,
+    descricao TEXT
 );
 
 CREATE TABLE Curso (
-    id INT NOT NULL PRIMARY KEY,
-    nome VARCHAR(255),
-    descricao VARCHAR(255),
-    departamento_id INT,
-    FOREIGN KEY (departamento_id) REFERENCES Departamento(id)
+    id_curso INTEGER PRIMARY KEY,
+    nome TEXT,
+    descricao TEXT,
+    departamento_id INTEGER,
+    FOREIGN KEY (departamento_id) REFERENCES Departamento(id_departamento)
+);
+
+CREATE TABLE Facilitador (
+    id_facilitador INTEGER PRIMARY KEY,
+    nome TEXT,
+    email TEXT,
+    telefone TEXT,
+    departamento_id INTEGER,
+    FOREIGN KEY (departamento_id) REFERENCES Departamento(id_departamento)
+);
+
+CREATE TABLE Modulo (
+    id_modulo INTEGER PRIMARY KEY,
+    nome TEXT,
+    descricao TEXT,
+    curso_id INTEGER,
+    facilitador_id INTEGER,
+    FOREIGN KEY (curso_id) REFERENCES Curso(id_curso),
+    FOREIGN KEY (facilitador_id) REFERENCES Facilitador(id_facilitador)
+);
+
+CREATE TABLE Aluno (
+    id_aluno INTEGER PRIMARY KEY,
+    nome TEXT,
+    email TEXT,
+    telefone TEXT,
+    data_nascimento DATE,
+    turma_id INTEGER, 
+    curso_id INTEGER,
+    modulo_atual_id INTEGER,
+    data_inicio DATE,
+    data_conclusao DATE,
+    nota FLOAT,
+    FOREIGN KEY (curso_id) REFERENCES Curso(id_curso),
+    FOREIGN KEY (modulo_atual_id) REFERENCES Modulo(id_modulo)
 );
