@@ -6,3 +6,4 @@ REPOSITÓRIO REFERENTE AO PROJETO EM GRUPO DO MÓDULO 3
 >3. Selecionar quais pessoas facilitadoras atuam em mais de uma turma.
 >4. Selecionar os alunos que moram em Nova Iguaçu.
 >5. Qual curso tem mais alunos cadastrados.
+>6. Quais alunos fazem mais de um curso.
